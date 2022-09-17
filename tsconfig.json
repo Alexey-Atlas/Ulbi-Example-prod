@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    // если сборка с помощью typescript, то куда будет сделана сборка
+    "outDir": "./dist/",
+    // не дает исп. any
+    "noImplicitAny": true,
+    "module": "ESNext",
+    // во что копилируем
+    "target": "es5",
+    // позволяет использовать jsx (если указать react-jsx, то не нужно в каждый файл импортить React)
+    "jsx": "react-jsx",
+    // компилятор обрабатывает не только .ts, но и .js
+    "allowJs": true,
+    "moduleResolution": "node",
+    // для абсолютных импортов (без соплей)
+    "baseUrl": ".",
+    // для использования привычных импортов (вместо commonjs(require()))
+    "esModuleInterop": true,
+    // для использования привычных импортов, а именно импорты default
+    "allowSyntheticDefaultImports": true,
+    // чтоб сработал автокомплит для модулей
+    "plugins": [{ "name": "typescript-plugin-css-modules" }]
+  },
+  // чтоб при сборке не ругался на импорты
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  }
+}
