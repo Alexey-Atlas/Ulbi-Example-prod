@@ -26,7 +26,7 @@ export const buildWebpackConfig = (
       // лоудеры
       rules: buildLoaders(options),
     },
-    resolve: buildResolvers(),
+    resolve: buildResolvers(options),
     // чтоб видеть в каком именно файле произошла ошибка(используем только в дев сборке)
     devtool: isDev ? "inline-source-map" : undefined,
     // чтоб при старте приложения запускать localhost(используем только в дев сборке)
