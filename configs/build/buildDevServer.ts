@@ -1,4 +1,5 @@
 import { BuildOptions } from "./types/config";
+// переименовываем импорт, чтоб не было конфликта с Configuration вебпака
 import type { Configuration as DevServerConfiguration } from "webpack-dev-server";
 
 export const buildDevServer = (

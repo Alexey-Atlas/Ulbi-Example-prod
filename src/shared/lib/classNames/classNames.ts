@@ -4,18 +4,18 @@ type Mods = Record<string, string | boolean>;
 // принимает главный класс(rootCls), модификаторы(mods), массив доп. классов
 export const classNames = (
   rootCls: string,
-  mods: Mods,
-  additional: string[]
+  mods: Mods = {},
+  additional: string[] = []
 ): string => {
   return [
     // возвращаем главный класс
     rootCls,
     // проходим по объекту, преобразовываем его в массив, фильтруем по трушному value и возвращаем только иассив ключей
     ...Object.entries(mods)
-      .filter(([key, value]) => Boolean(value))
-      .map(([key, value]) => key),
-    // добавляем доп. классы
-    ...additional,
+      .filter(([classKey, classValue]) => Boolean(classValue))
+      .map(([classKey, classValue]) => classKey),
+    // добавляем доп. классы и фильтруем их от ложных значений
+    ...additional.filter(Boolean),
     // склевиаем строку из массива по пробелу
   ].join(" ");
 };

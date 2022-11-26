@@ -6,16 +6,28 @@ import { BuildOptions } from "./types/config";
 export const buildLoaders = ({
   isDev,
 }: BuildOptions): webpack.RuleSetRule[] => {
+  // порядок лоадеров имеет значение, поэтому выносим в отдельные переменные
+
+  // typescript loader
+  const typescriptLoader = {
+    // ловим файлы с .ts, .tsx
+    test: /\.tsx?$/,
+    // для них используем ts-loader
+    use: "ts-loader",
+    // исключаем node_modules
+    exclude: /node_modules/,
+  };
+
   // scss лоадер
   const scssLoaders = {
     test: /\.s[ac]ss$/i,
     use: [
-      // Creates `style` nodes from JS strings
+      // Creates `style` nodes from JS strings (создает стили из строк JS)
       // "style-loader",
       // вместо style-loader добавляем лоадер для модулей
-      // в режиме разработки style-loader, иначе MiniCssExtractPlugin
+      // в режиме разработки style-loader, иначе MiniCssExtractPlugin (чтоб не генерировать css файлы для прода)
       isDev ? "style-loader" : MiniCssExtractPlugin.loader,
-      // Translates CSS into CommonJS
+      // Translates CSS into CommonJS (траслирует CSS в CommonJS)
       {
         loader: "css-loader",
         // добавляем options чтоб включить модули
@@ -31,23 +43,13 @@ export const buildLoaders = ({
           },
         },
       },
-      // Compiles Sass to CSS
+      // Compiles Sass to CSS (преобразовывает Sass в CSS)
       "sass-loader",
     ],
   };
 
-  // порядок лоадеров имеет значение, поэтому выносим в отдельные переменные
-  const typescriptLoader = {
-    // ловим файлы с .ts, .tsx
-    test: /\.tsx?$/,
-    // для них используем ts-loader
-    use: "ts-loader",
-    // исключаем node_modules
-    exclude: /node_modules/,
-  };
-
   return [
-    // если писать на нативном js (без typescript), то еще нужно установить babel-loader
+    // если писать на нативном js (без typescript), то нужно установить babel-loader вместо typescriptLoader
     typescriptLoader,
     scssLoaders,
   ];

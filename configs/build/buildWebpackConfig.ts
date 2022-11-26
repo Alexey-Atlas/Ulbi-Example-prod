@@ -21,11 +21,13 @@ export const buildWebpackConfig = (
       path: paths.build,
       clean: true,
     },
+    // вызываем функцию со списком плагинов
     plugins: buildPlugins(options),
     module: {
-      // лоудеры
+      // вызываем функцию со списком лоудеров (обработка файлов, выходящих за рамки JS)
       rules: buildLoaders(options),
     },
+    // вызываем функцию со списком resolves
     resolve: buildResolvers(options),
     // чтоб видеть в каком именно файле произошла ошибка(используем только в дев сборке)
     devtool: isDev ? "inline-source-map" : undefined,
