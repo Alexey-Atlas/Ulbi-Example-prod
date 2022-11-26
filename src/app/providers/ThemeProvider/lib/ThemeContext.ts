@@ -11,6 +11,6 @@ export interface ThemeContextProps {
 }
 
 // делаем доступность темы по всему приложению
-export const ThemeContext = createContext<ThemeContextProps>({  });
+export const ThemeContext = createContext<ThemeContextProps>({});
 // делаем значение темы доступным при закрытии и открыти браузера
 export const LOCAL_STORAGE_THEME_KEY = "theme";

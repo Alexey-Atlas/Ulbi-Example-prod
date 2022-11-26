@@ -1,4 +1,4 @@
-import React, { FC, useMemo, useState } from "react";
+import { FC, useMemo, useState } from "react";
 import { LOCAL_STORAGE_THEME_KEY, Theme, ThemeContext } from "../lib/ThemeContext";
 
 const defaultTheme =
@@ -23,4 +23,5 @@ const ThemeProvider: FC = ({ children }) => {
   );
 };
 
+// не забываем обернуть все приложение провайдером в index.tsx, чтоб доступ был во всем приложении
 export default ThemeProvider;

@@ -3,8 +3,11 @@ import { lazy } from "react";
 // так используем в реальных проектах
 // *** export const AboutePageAsync = lazy(() => import("./AboutPage"));
 
+// если не хотим использовать экспорт по дефолту, то пишем так:
+// export const AboutePageAsync = lazy(() => import('./AboutPage').then(module=>({default:module.AboutPage})));
+
 // чтоб тестить в дев режиме при разработке:
-export const AboutePageAsync = lazy(
+export const AboutPageAsync = lazy(
   () =>
     new Promise((resolve) => {
       // @ts-ignore
